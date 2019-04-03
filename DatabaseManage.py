@@ -1,4 +1,4 @@
-import MySQLdb
+import sqlite3
 
 conn = sqlite3.connect("Proj.db")
 
@@ -7,7 +7,7 @@ conn = sqlite3.connect("Proj.db")
 def addRec(name):
 	global conn
 	c = conn.cursor
-	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME == ?" name)
+	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME = ?" name)
 	results = c.fetchall()
 	if results != None:
 		c.close()
@@ -19,14 +19,12 @@ def addRec(name):
 def remRec(name):
 	global conn 
 	c = conn.cursor()
-	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME == ?" name )
+	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME = ?" name )
 	results = c.fetchall()
 	if results == None:
 		return False
 	for result in results:
-		
+		id = result[0]
+		c.execute("DELETE FROM RECIPE WHERE MEAL_ID = ?" id)
+	return True
 
-
-
-
-	
