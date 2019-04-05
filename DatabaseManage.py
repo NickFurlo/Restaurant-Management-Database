@@ -1,30 +1,94 @@
 import sqlite3
+import random
 
 conn = sqlite3.connect("Proj.db")
 
-
-#The missing parts of this are dependent on having the ui design
-def addRec(name):
+#Ingredients is passed as an array of triples. Each triple is of the form (name, unit price, unit)
+def addRec(name,ingredients):
 	global conn
 	c = conn.cursor
-	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME = ?" name)
+	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME = ?", name)
 	results = c.fetchall()
-	if results != None:
+	if len(results) > 0:
 		c.close()
 		return False
-	#Need a way to add ingredients. Possible after having the ui design
+	c.exectue("SELECT MEAL_ID FROM MEAL")
+	ids = c.fetchall()
+	trueId = idGen(ids)
+	c.execute("INSERT INTO MEAL VALUES (?, ?)", trueId, name)
+	flag = False
+	for ing in ingredients:
+		if addIng(ing) == False:
+			flag = True
+	c.close()
+	#A None return value means that the recipe was added, but the ingredient(s) already existed
+	if flag == True:
+		return None
+	return True
+
+#ing is passed as a triple the form (name, unit price, unit)
+def addIng(ing):
+	global conn
+	c = conn.cursor()
+	c.execute("SELECT * FROM INGREDIENT WHERE INGREDIENT_NAME = ?", ing[0])
+	results = c.fetchall()
+	if len(results) > 0:
+		c.close()
+		return False
+	c.execute("INSERT INTO INGREDIENT VALUES (?,?,?)", ing)
 	c.close()
 	return True
+	
+def idGen(existIds):
+	id = random.randint(0,1000)
+	if id in existIds:
+		return idGen(existIds)
+	else:
+		return id
 
 def remRec(name):
 	global conn 
 	c = conn.cursor()
-	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME = ?" name )
+	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME = ?", name )
 	results = c.fetchall()
-	if results == None:
+	if len(results) == 0:
 		return False
 	for result in results:
 		id = result[0]
-		c.execute("DELETE FROM RECIPE WHERE MEAL_ID = ?" id)
+		c.execute("DELETE FROM RECIPE WHERE MEAL_ID = ?", id)
 	return True
 
+#ings is passed as an array
+def searchRec(ings):
+	global conn
+	c = conn.cursor()
+	n = len(ings)
+	if n == 0:
+		return False
+	if n > 3:
+		return False
+	ingids = []
+	for ing in ings:
+		c.execute("SELECT INGREDIENT_NUM FROM INGREDIENT WHERE INGREDIENT_NAME = ?", ing)
+		temp = c.fetchall()
+		for i in temp:
+			ingids.append(i)
+	mealids = []
+	for id in ingids:
+		c.execute("SELECT MEAL_ID FROM RECIPE WHERE INGREDIENT_NUM = ?", id)
+		temp = c.fetchall()
+		for i in temp:
+			mealids.append(i)
+	mealnames = []
+	for mealname in mealnames:
+		c.execute("SELECT MEAL_NAME FROM MEAL WHERE MEAL_ID = ?", mealname)
+		temp = c.fetchall()
+		for i in temp:
+			mealnames.append(i)
+	return mealnames
+
+#name is recipe name. TO BE ADDED LATER
+#def calcPrice(name):
+
+#assign recipe to chef. TO BE ADDED LATER
+#def assignRec(chef, recName):
