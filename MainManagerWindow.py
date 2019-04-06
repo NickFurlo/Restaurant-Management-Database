@@ -1,6 +1,7 @@
 import PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import DatabaseManage
+import AddRecipeWindow
 
 class MainWindow(QtWidgets.QMainWindow):
 	def __init__(self):
@@ -16,11 +17,25 @@ class MainWindow(QtWidgets.QMainWindow):
 	def listenerSet(self):
 		ui.recipeList.itemClicked.connect(self.getRec)
 		ui.recipeList_2.itemClicked.connect(self.getRecInfo)
+		ui.btnRemoveRecipe.clicked.connect(self.removeRecipe)
+		ui.btnAdd.clicked.connect(self.addRec)
+
+	def addRec(self):
+		self.t = AddRecipeWindow.MainWindow()
+		self.t.show()
+
+	def removeRecipe(self):
+		currentRec = ui.recipeList_2.currentItem.data(16)
+		DatabaseManage.remRec(currentRec)
+		self.setRec()
 
 	def getRecInfo(self):
 		currentRec = ui.recipeList_2.currentItem().data(16)
-
-
+		price = DatabaseManage.getPrice(currentRec)
+		ui.PriceLabel.setText("$"+price)
+		ingredients, quantities = DatabaseManage.getIngs(currentRec)
+		for i in range(len(ingredients)):
+			temp = QtWidgets.QListWidgetItem(ingredients[i] + " " + quantities[i],ui.recipeList_2)
 
 	def getRec(self):
 		currentChef = ui.recipeList.currentItem()

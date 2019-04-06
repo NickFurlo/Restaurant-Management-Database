@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import MainManagerWindow
 import EnterNameWindow
 import ctypes
+from PyQt5.QtWidgets import QMessageBox
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("myappid")
 
 class MainWindow(QtWidgets.QDialog):

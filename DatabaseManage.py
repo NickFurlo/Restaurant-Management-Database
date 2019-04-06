@@ -90,7 +90,7 @@ def searchRec(ings):
 def checkChefName(name):
 	global conn
 	c = conn.cursor()
-	c.execute("SELECT * FROM CHEF WHERE CHEF_FNAME == ?", name)
+	c.execute("SELECT * FROM CHEF WHERE CHEF_FNAME == '%s'" %name)
 	results = c.fetchall()
 	if len(results) > 0:
 		return True
@@ -120,3 +120,41 @@ def getAllMeals():
 	c.execute("SELECT MEAL_NAME FROM MEAL")
 	results = c.fetchall()
 	return results
+
+def getPrice(name):
+	c = conn.cursor()
+	c.execute("SELECT MEAL_ID FROM MEAL WHERE MEAL_NAME = ?", name)
+	mealId = c.fetchall()[0]
+	c.execute("SELECT INGREDIENT_NUM, QNTY FROM RECIPE WHERE MEAL_ID = ?", mealId)
+	ingAndQuants = c.fetchall()
+	ingids = []
+	quants = []
+	for i in ingAndQuants:
+		ingids.append(i[0])
+		quants.append(i[1])
+	prices = []
+	for i in range(len(ingids)):
+		c.execute("SELECT INGREDIENT_NAME, INGREDIENT_UNIT_PRICE FROM INGREDIENT WHERE INGREDIENT_NUM = ?", ingids[i])
+		result = c.fetchall()[0]
+		prices.append(quants[i]*result[1])
+	sum = 0
+	for price in prices:
+		sum += price
+	return sum
+
+def getIngs(recipe):
+	c = conn.cursor()
+	c.execute("SELECT MEAL_ID FROM MEAL WHERE MEAL_NAME = ?", recipe)
+	mealId = c.fetcall()[0]
+	c.execute("SELECT INGREDIENT_NUM, QNTY FROM RECIPE WHERE MEAL_ID = ?", mealId)
+	results = c.fetchall()
+	nums = []
+	quants = []
+	for result in results:
+		nums.append(result[0])
+		quants.append(results[1])
+	names = []
+	for num in nums:
+		c.execute("SELECT INGREDIENT_NAME FROM INGREDIENT WHERE INGREDIENT_NUM = ?", num)
+		names.append(c.fetchall()[0])
+	return names, quants

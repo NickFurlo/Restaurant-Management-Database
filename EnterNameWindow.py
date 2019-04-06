@@ -2,10 +2,18 @@ import PyQt5
 import DatabaseManage
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import subprocess
+from PyQt5.QtWidgets import QMessageBox
 import sys
 #import MainChefWindow
 
 class MainWindow(QtWidgets.QMainWindow):
+	def msgBox(self,icon,title,message):
+		msg = QMessageBox()
+		msg.setIcon(icon)
+		msg.setText(message)
+		msg.setWindowTitle(title)
+		retval = msg.exec_()
+
 	def checkName(self):
 		global ui
 		name = ui.lineEdit.text()
