@@ -158,3 +158,17 @@ def getIngs(recipe):
 		c.execute("SELECT INGREDIENT_NAME FROM INGREDIENT WHERE INGREDIENT_NUM = ?", num)
 		names.append(c.fetchall()[0])
 	return names, quants
+
+def checkIng(name,ppu):
+	c = conn.cursor()
+	c.execute("SELECT FROM INGREDIENT WHERE INGREDIENT_NAME = '%s'"%name)
+	name = c.fetchall()[0]
+	if name == None:
+		return None
+	if ppu == "":
+		return True
+	c.execute("SELECT FROM INGREDIENT WHERE INGREDIENT_NAME = '%s' AND INGREDIENT_UNIT_PRICE = %d"%(name, ppu))
+	results = c.fetchall()[0]
+	if results == None:
+		return False
+	return True

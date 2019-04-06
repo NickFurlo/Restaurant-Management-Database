@@ -54,7 +54,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Contents:</string>
+    <string>Description:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -102,6 +102,16 @@
      <y>30</y>
      <width>221</width>
      <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>531</width>
+     <height>441</height>
     </rect>
    </property>
   </widget>
@@ -252,19 +262,19 @@
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>5</x>
-     <y>81</y>
-     <width>511</width>
-     <height>431</height>
+     <x>560</x>
+     <y>110</y>
+     <width>141</width>
+     <height>381</height>
     </rect>
    </property>
   </widget>
   <widget class="QListWidget" name="listWidget_2">
    <property name="geometry">
     <rect>
-     <x>535</x>
-     <y>111</y>
-     <width>301</width>
+     <x>700</x>
+     <y>110</y>
+     <width>131</width>
      <height>381</height>
     </rect>
    </property>
