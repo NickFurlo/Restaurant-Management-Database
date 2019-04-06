@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>477</width>
-    <height>183</height>
+    <width>463</width>
+    <height>152</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,19 +23,19 @@
    <property name="bottomMargin">
     <number>30</number>
    </property>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="btnManager">
+   <item row="0" column="0" colspan="2" alignment="Qt::AlignVCenter">
+    <widget class="QLabel" name="label">
      <property name="font">
       <font>
        <family>Book Antiqua</family>
-       <pointsize>11</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
-     <property name="styleSheet">
-      <string notr="true">padding: 10px;</string>
-     </property>
      <property name="text">
-      <string>Manager</string>
+      <string>Select Your Role</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -46,6 +46,9 @@
        <family>Book Antiqua</family>
        <pointsize>12</pointsize>
       </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
      </property>
      <property name="styleSheet">
       <string notr="true">padding: 10px;</string>
@@ -61,19 +64,19 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="2" alignment="Qt::AlignVCenter">
-    <widget class="QLabel" name="label">
+   <item row="1" column="0">
+    <widget class="QPushButton" name="btnManager">
      <property name="font">
       <font>
        <family>Book Antiqua</family>
-       <pointsize>14</pointsize>
+       <pointsize>11</pointsize>
       </font>
      </property>
-     <property name="text">
-      <string>Select Your Role</string>
+     <property name="styleSheet">
+      <string notr="true">padding: 10px;</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+     <property name="text">
+      <string>Manager</string>
      </property>
     </widget>
    </item>

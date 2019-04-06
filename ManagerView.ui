@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>821</width>
+    <width>859</width>
     <height>626</height>
    </rect>
   </property>
@@ -33,7 +33,7 @@
      <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabMyRecipes">
      <attribute name="title">
@@ -59,7 +59,7 @@
       <property name="geometry">
        <rect>
         <x>270</x>
-        <y>10</y>
+        <y>20</y>
         <width>341</width>
         <height>561</height>
        </rect>
@@ -108,9 +108,9 @@
       <property name="geometry">
        <rect>
         <x>270</x>
-        <y>10</y>
+        <y>40</y>
         <width>341</width>
-        <height>561</height>
+        <height>531</height>
        </rect>
       </property>
       <property name="autoFillBackground">
@@ -132,6 +132,51 @@
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QPushButton" name="btnRemoveRecipe">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>0</y>
+        <width>198</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Book Antiqua</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Remove Recipe</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Price:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="PriceLabel">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>10</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -139,8 +184,8 @@
      <rect>
       <x>640</x>
       <y>30</y>
-      <width>160</width>
-      <height>591</height>
+      <width>200</width>
+      <height>630</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -233,19 +278,6 @@
        </property>
        <property name="text">
         <string>Search</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnRemoveRecipe">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Remove Recipe</string>
        </property>
       </widget>
      </item>

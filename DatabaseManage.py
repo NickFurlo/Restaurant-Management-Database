@@ -87,8 +87,36 @@ def searchRec(ings):
 			mealnames.append(i)
 	return mealnames
 
-#name is recipe name. TO BE ADDED LATER
-#def calcPrice(name):
+def checkChefName(name):
+	global conn
+	c = conn.cursor()
+	c.execute("SELECT * FROM CHEF WHERE CHEF_FNAME == ?", name)
+	results = c.fetchall()
+	if len(results) > 0:
+		return True
+	return False
 
-#assign recipe to chef. TO BE ADDED LATER
-#def assignRec(chef, recName):
+def getChefs():
+	global conn
+	c = conn.cursor()
+	c.execute("SELECT CHEF_FNAME,CHEF_LNAME FROM CHEF")
+	results=c.fetchall()
+	return results
+
+def getRecByChefName(name):
+	c = conn.cursor()
+	c.execute("SELECT CHEF_ID FROM CHEF WHERE CHEF_FNAME = ? AND CHEF_LNAME = ?", name)
+	chefId = c.fetchall()[0]
+	c.execute("SELECT MEAL_ID FROM MAKES WHERE CHEF_ID = ?", chefId)
+	mealIds = c.fetcall()
+	meals = []
+	for id in mealIds:
+		c.execute("SELECT MEAL_NAME FROM MEAL WHERE MEAL_ID = ?", id)
+		meals.append(c.fetcall()[0])
+	return meals
+
+def getAllMeals():
+	c = conn.cursor()
+	c.execute("SELECT MEAL_NAME FROM MEAL")
+	results = c.fetchall()
+	return results
