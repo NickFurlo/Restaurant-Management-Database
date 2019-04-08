@@ -1,5 +1,6 @@
 import PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
+import DatabaseManage
 
 
 class MainWindow(QtWidgets.QDialog):
@@ -9,24 +10,34 @@ class MainWindow(QtWidgets.QDialog):
 		global ui
 		ui = uic.loadUi('AddRecipe.ui',self)
 		ui.pushButton.clicked.connect(self.addIng)
+		ui.pushButton_3.clicked.connect(self.remIng)
+		ui.pushButton_2.clicked.connect(self.addRec)
+
+	def remIng(self):
+		currentIng = ui.listWidget.currentItem()
+		ui.listWidget.removeItemWidget(currientIng)
+		
+	def addRec(self):
+		name = ui.lineEdit_3.text()
+		desc = ui.plainTextEdit.text()
+
 
 	def addIng(self):
+		global index
+		index = []
 		name = ui.lineEdit_2.text()
 		ppu = ui.lineEdit_3.text()
 		qnty = ui.lineEdit_4.text()
 		alg = DatabaseManage.checkIng(name,ppu)
 		if alg == True:
 			temp = QWidgets.QListWidgetItem(name,ui.listWidget)
-			foo = QWidgets.QListWidgetItem(ppu,ui.listWidget_2)
 		if alg == False:
 			self.msgBox(QMessageBox.Warning,"Error","This ingredient is already in the database with a different price per unit. Leave the Price Per Unit field blank.")
-		if alg = None:
-			if alg == True:
-			temp = QWidgets.QListWidgetItem(name,ui.listWidget)
-			foo = QWidgets.QListWidgetItem(ppu,ui.listWidget_2)
-			temp.setData(16,name)
-			foo.setData(16,ppu)
-			foo.setData(17,qnty)
+			if alg == None:
+				temp = QWidgets.QListWidgetItem(name,ui.listWidget)
+				temp.setData(16,name)
+				temp.setData
+				index
 
 	def msgBox(self,icon,title,message):
 		msg = QMessageBox()

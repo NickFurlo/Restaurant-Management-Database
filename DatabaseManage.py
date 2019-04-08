@@ -28,6 +28,8 @@ def addRec(name,ingredients):
 
 #ing is passed as a triple the form (name, unit price, unit)
 def addIng(ing):
+	if len(ing) == 2:
+		ing.append("")
 	global conn
 	c = conn.cursor()
 	c.execute("SELECT * FROM INGREDIENT WHERE INGREDIENT_NAME = ?", ing[0])
@@ -35,7 +37,10 @@ def addIng(ing):
 	if len(results) > 0:
 		c.close()
 		return False
-	c.execute("INSERT INTO INGREDIENT VALUES (?,?,?)", ing)
+	c.execute("SELECT INGREDIENT_NUM FROM INGREDIENT")
+	ids = c.fetchall()
+	id = idGen(ids)
+	c.execute("INSERT INTO INGREDIENT VALUES (?,?,?,?)",id, ing)
 	c.close()
 	return True
 	
@@ -161,10 +166,17 @@ def getIngs(recipe):
 
 def checkIng(name,ppu):
 	c = conn.cursor()
-	c.execute("SELECT FROM INGREDIENT WHERE INGREDIENT_NAME = '%s'"%name)
-	name = c.fetchall()[0]
-	if name == None:
+	c.execute("SELECT INGREDIENT_NAME FROM INGREDIENT WHERE INGREDIENT_NAME = '%s'"%name)
+	temp = c.fetchall()
+	if len(temp) == 0:
+		nameExist = None
+	else:
+		nameExist = temp[0]
+	if nameExist == None:
+		newIng = (name, ppu)
+		addIng()
 		return None
+
 	if ppu == "":
 		return True
 	c.execute("SELECT FROM INGREDIENT WHERE INGREDIENT_NAME = '%s' AND INGREDIENT_UNIT_PRICE = %d"%(name, ppu))
