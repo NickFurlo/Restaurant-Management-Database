@@ -42,8 +42,8 @@
      <widget class="QListWidget" name="recipeList">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>20</x>
+        <y>20</y>
         <width>251</width>
         <height>561</height>
        </rect>
@@ -55,32 +55,14 @@
        </font>
       </property>
      </widget>
-     <widget class="QPlainTextEdit" name="recipeDisplay">
+     <widget class="QListWidget" name="listWidget">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>20</y>
+        <x>280</x>
+        <y>10</y>
         <width>341</width>
         <height>561</height>
        </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::WinPanel</enum>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="backgroundVisible">
-       <bool>false</bool>
-      </property>
-      <property name="centerOnScroll">
-       <bool>false</bool>
       </property>
      </widget>
     </widget>
@@ -102,34 +84,6 @@
         <family>Book Antiqua</family>
         <pointsize>11</pointsize>
        </font>
-      </property>
-     </widget>
-     <widget class="QPlainTextEdit" name="recipeDisplay_2">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>40</y>
-        <width>341</width>
-        <height>531</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::WinPanel</enum>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="backgroundVisible">
-       <bool>false</bool>
-      </property>
-      <property name="centerOnScroll">
-       <bool>false</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="btnRemoveRecipe">
@@ -175,6 +129,16 @@
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>40</y>
+        <width>351</width>
+        <height>531</height>
+       </rect>
       </property>
      </widget>
     </widget>
