@@ -63,3 +63,17 @@ class MainWindow(QtWidgets.QMainWindow):
 			temp.setData(16,recipe)
 		ui.recipeList_2.sortItems()
 
+	def searchRecipes(ing1):
+		global ui
+		ingredient1 = ui.ingredient1.text()
+		recipenames = searchRec(ingredient1)
+		recipeList.clear()
+		recipeList_2.clear()
+		for i in recipenames:
+			temp = QtWidgets.QListWidgetItem(i, ui.recipeList)
+			temp2 = QtWidgets.QListWidgetItem(i, ui.recipeList_2)
+		ui.recipeList.sortItems()
+		ui.recipeList_2.sortItems()
+
+		
+
