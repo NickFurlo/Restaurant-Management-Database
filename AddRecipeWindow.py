@@ -14,12 +14,16 @@ class MainWindow(QtWidgets.QDialog):
 		ui.pushButton_2.clicked.connect(self.addRec)
 
 	def remIng(self):
-		currentIng = ui.listWidget.currentItem()
-		ui.listWidget.removeItemWidget(currientIng)
+		currentIng = ui.listWidget.currentRow()
+		print(currentIng)
 		
 	def addRec(self):
 		name = ui.lineEdit_3.text()
 		desc = ui.plainTextEdit.text()
+		ings = []
+		for i in index:
+			ings.append(ui.listWidget.itemFromIndex(i).data(16),ui.listWidget.itemFromIndex(i).data(17),"")
+		DatabaseManage.addRec(name,ings)
 
 
 	def addIng(self):
@@ -30,14 +34,14 @@ class MainWindow(QtWidgets.QDialog):
 		qnty = ui.lineEdit_4.text()
 		alg = DatabaseManage.checkIng(name,ppu)
 		if alg == True:
-			temp = QWidgets.QListWidgetItem(name,ui.listWidget)
+			temp = QtWidgets.QListWidgetItem(name,ui.listWidget)
 		if alg == False:
 			self.msgBox(QMessageBox.Warning,"Error","This ingredient is already in the database with a different price per unit. Leave the Price Per Unit field blank.")
 			if alg == None:
 				temp = QWidgets.QListWidgetItem(name,ui.listWidget)
 				temp.setData(16,name)
-				temp.setData
-				index
+				temp.setData(17,ppu)
+				index.append(ui.listWidget.indexFromItem(temp))
 
 	def msgBox(self,icon,title,message):
 		msg = QMessageBox()

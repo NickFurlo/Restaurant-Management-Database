@@ -64,20 +64,14 @@ def remRec(name):
 	return True
 
 #ings is passed as an array
-def searchRec(ings):
+def searchRec(ing):
 	global conn
 	c = conn.cursor()
-	n = len(ings)
-	if n == 0:
-		return False
-	if n > 3:
-		return False
 	ingids = []
-	for ing in ings:
-		c.execute("SELECT INGREDIENT_NUM FROM INGREDIENT WHERE INGREDIENT_NAME = ?", ing)
-		temp = c.fetchall()
-		for i in temp:
-			ingids.append(i)
+	c.execute("SELECT INGREDIENT_NUM FROM INGREDIENT WHERE INGREDIENT_NAME = ?", ing)
+	temp = c.fetchall()
+	for i in temp:
+		ingids.append(i)
 	mealids = []
 	for id in ingids:
 		c.execute("SELECT MEAL_ID FROM RECIPE WHERE INGREDIENT_NUM = ?", id)
@@ -170,13 +164,9 @@ def checkIng(name,ppu):
 	temp = c.fetchall()
 	if len(temp) == 0:
 		nameExist = None
+		return True
 	else:
 		nameExist = temp[0]
-	if nameExist == None:
-		newIng = (name, ppu)
-		addIng()
-		return None
-
 	if ppu == "":
 		return True
 	c.execute("SELECT FROM INGREDIENT WHERE INGREDIENT_NAME = '%s' AND INGREDIENT_UNIT_PRICE = %d"%(name, ppu))
