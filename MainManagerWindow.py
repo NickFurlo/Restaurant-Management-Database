@@ -63,7 +63,7 @@ class MainWindow(QtWidgets.QMainWindow):
 			temp.setData(16,recipe)
 		ui.recipeList_2.sortItems()
 
-	def searchRecipes(ing1):
+	def searchRecipes():
 		global ui
 		ingredient1 = ui.ingredient1.text()
 		recipenames = searchRec(ingredient1)
@@ -75,5 +75,17 @@ class MainWindow(QtWidgets.QMainWindow):
 		ui.recipeList.sortItems()
 		ui.recipeList_2.sortItems()
 
-		
+	def searchChefs():
+		global ui
+		cfname = ui.lineEdit.text()
+		clname = ui.lineEdit_2.text()
+		cfullname = cfname + " " + clname
+		allChefs = getChefs
+		for chef in allChefs:
+			if cfullname == chef
+				recipeList.setText(cfullname)
+
+	def displayRecPrice(recname):
+		#TODO 
+
 
