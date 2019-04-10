@@ -21,6 +21,16 @@ class MainWindow(QtWidgets.QMainWindow):
 		ui.btnRemoveRecipe.clicked.connect(self.removeRecipe)
 		ui.btnAdd.clicked.connect(self.addRec)
 		ui.pushButton.clicked.connect(self.addChef)
+		ui.pushButton_3.clicked.connect(self.setRec)
+		ui.pushButton_4.clicked.connect(self.setChefs)
+		ui.btnRemoveChef.clicked.connect(self.remChef)
+
+	def remChef(self):
+		chef = ui.recipeList.currentItem()
+		fname = chef.data(16)
+		lname = chef.data(17)
+		DatabaseManage.remChef(fname,lname)
+		ui.listWidget.clear()
 
 	def addChef(self):
 		self.t = AddChefWindow.MainWindow()
@@ -29,31 +39,38 @@ class MainWindow(QtWidgets.QMainWindow):
 	def addRec(self):
 		self.t = AddRecipeWindow.MainWindow()
 		self.t.show()
+		ui.recipeList_2.clear()
+		self.setRec()
 
 	def removeRecipe(self):
-		currentRec = ui.recipeList_2.currentItem.data(16)
+		currentRec = ui.recipeList_2.currentItem().data(16)
 		DatabaseManage.remRec(currentRec)
-		self.setRec()
+		ui.listWidget_2.clear()
 
 	def getRecInfo(self):
 		currentRec = ui.recipeList_2.currentItem().data(16)
+		ui.listWidget_2.clear()
 		price = DatabaseManage.getPrice(currentRec)
-		ui.PriceLabel.setText("$"+price)
+		ui.PriceLabel.setText("$%.2f"%price)
 		ingredients, quantities = DatabaseManage.getIngs(currentRec)
 		for i in range(len(ingredients)):
-			temp = QtWidgets.QListWidgetItem(ingredients[i] + " " + quantities[i],ui.recipeList_2)
+			s = str(ingredients[i][0])
+			s += "   "
+			s += str(quantities[i])
+			temp = QtWidgets.QListWidgetItem(s,ui.listWidget_2)
 
 	def getRec(self):
+		ui.listWidget.clear()
 		currentChef = ui.recipeList.currentItem()
 		fname = currentChef.data(16)
 		lname = currentChef.data(17)
 		name = (fname, lname)
 		recipes = DatabaseManage.getRecByChefName(name)
 		for recipe in recipes:
-			temp = QtWidgets.QListWidgetItem(recipe,ui.recipeDisplay)
+			temp = QtWidgets.QListWidgetItem(recipe[0],ui.listWidget)
 
 	def setChefs(self):
-		global ui
+		ui.recipeList.clear()
 		chefs = DatabaseManage.getChefs()
 		for chef in chefs:
 			foo = chef[0] + " " + chef[1]
@@ -63,6 +80,7 @@ class MainWindow(QtWidgets.QMainWindow):
 		ui.recipeList.sortItems()
 
 	def setRec(self):
+		ui.recipeList_2.clear()
 		recipes = DatabaseManage.getAllMeals()
 		for recipe in recipes:
 			temp = QtWidgets.QListWidgetItem(recipe, ui.recipeList_2)
@@ -88,10 +106,5 @@ class MainWindow(QtWidgets.QMainWindow):
 		cfullname = cfname + " " + clname
 		allChefs = getChefs
 		for chef in allChefs:
-			if cfullname == chef
+			if cfullname == chef:
 				recipeList.setText(cfullname)
-
-	def displayRecPrice(recname):
-		#TODO 
-
-

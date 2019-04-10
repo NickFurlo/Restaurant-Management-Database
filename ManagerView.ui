@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>859</width>
-    <height>626</height>
+    <height>681</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,9 +43,9 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
+        <y>40</y>
         <width>251</width>
-        <height>561</height>
+        <height>541</height>
        </rect>
       </property>
       <property name="font">
@@ -59,10 +59,42 @@
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>10</y>
+        <y>40</y>
         <width>341</width>
-        <height>561</height>
+        <height>531</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnRemoveChef">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>0</y>
+        <width>198</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Book Antiqua</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Remove Chef</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>141</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Update List</string>
       </property>
      </widget>
     </widget>
@@ -74,9 +106,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>40</y>
         <width>251</width>
-        <height>561</height>
+        <height>531</height>
        </rect>
       </property>
       <property name="font">
@@ -139,6 +171,19 @@
         <width>351</width>
         <height>531</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>141</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Update List</string>
       </property>
      </widget>
     </widget>
@@ -302,19 +347,6 @@
        </property>
        <property name="text">
         <string>Search</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnRemoveChef">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Remove Chef</string>
        </property>
       </widget>
      </item>

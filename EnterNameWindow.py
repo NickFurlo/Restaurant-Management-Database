@@ -4,7 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import subprocess
 from PyQt5.QtWidgets import QMessageBox
 import sys
-#import MainChefWindow
+import MainChefWindow
 
 class MainWindow(QtWidgets.QMainWindow):
 	def msgBox(self,icon,title,message):

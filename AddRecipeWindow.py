@@ -34,30 +34,33 @@ class MainWindow(QtWidgets.QDialog):
 			return None
 		desc = ui.plainTextEdit.toPlainText()
 		ings = []
+		q = []
 		for i in index:
-			ings.append(ui.listWidget.itemFromIndex(i).data(16),ui.listWidget.itemFromIndex(i).data(17),"")
+			ings.append((ui.listWidget.itemFromIndex(i).data(16),ui.listWidget.itemFromIndex(i).data(17),""))
+			q.append(ui.listWidget.itemFromIndex(i).data(18))
 		if len(ings) == 0:
 			self.msgBox(QMessageBox.Warning,"No Ingredients.", "Plese enter at least one ingredient")
 			return None
-		DatabaseManage.addRec(name,ings)
+		DatabaseManage.addRec(name,ings,q)
 		self.close()
 
 
 	def addIng(self):
 		name = ui.lineEdit_2.text()
-		ppu = ui.lineEdit_3.text()
+		ppu = float(ui.lineEdit_3.text())
 		qnty = ui.lineEdit_4.text()
 		if qnty == "":
 			self.msgBox(QMessageBox.Warning,"No Quantity.", "Please enter a quantity.")
 			return None
-		alg = DatabaseManage.checkIng(name,ppu)
-		if alg == True:
-			temp = QtWidgets.QListWidgetItem(name,ui.listWidget)
-		if alg == False:
-			self.msgBox(QMessageBox.Warning,"Error","This ingredient is already in the database with a different price per unit. Leave the Price Per Unit field blank.")
-			if alg == None:
-				temp = QWidgets.QListWidgetItem(name,ui.listWidget)
-				temp.setData(16,name)
-				temp.setData(17,ppu)
-				index.append(ui.listWidget.indexFromItem(temp))
-
+		if name == "":
+			self.msgBox(QMessageBox.Warning,"No Name","Please enter a name for the ingredient.")
+		if ppu == "":
+			self.msgBox(QmsgBox.Warning,"No Unit Price.","Please enter a unit price.")
+		temp = QtWidgets.QListWidgetItem(name,ui.listWidget)
+		temp.setData(16,name)
+		temp.setData(17,ppu)
+		temp.setData(18,qnty)
+		index.append(ui.listWidget.indexFromItem(temp))
+		ui.lineEdit_2.clear()
+		ui.lineEdit_3.clear()
+		ui.lineEdit_4.clear()

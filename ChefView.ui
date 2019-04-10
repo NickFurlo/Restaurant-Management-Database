@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>815</width>
-    <height>621</height>
+    <width>864</width>
+    <height>627</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
      <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tabMyRecipes">
      <attribute name="title">
@@ -139,7 +139,7 @@
      <rect>
       <x>640</x>
       <y>37</y>
-      <width>160</width>
+      <width>200</width>
       <height>581</height>
      </rect>
     </property>
