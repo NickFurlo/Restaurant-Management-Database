@@ -2,6 +2,7 @@ import PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import DatabaseManage
 import AddRecipeWindow
+import AddChefWindow
 
 class MainWindow(QtWidgets.QMainWindow):
 	def __init__(self):
@@ -19,6 +20,11 @@ class MainWindow(QtWidgets.QMainWindow):
 		ui.recipeList_2.itemClicked.connect(self.getRecInfo)
 		ui.btnRemoveRecipe.clicked.connect(self.removeRecipe)
 		ui.btnAdd.clicked.connect(self.addRec)
+		ui.pushButton.clicked.connect(self.addChef)
+
+	def addChef(self):
+		self.t = AddChefWindow.MainWindow()
+		self.t.show()
 
 	def addRec(self):
 		self.t = AddRecipeWindow.MainWindow()

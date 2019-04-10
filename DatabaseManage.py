@@ -174,3 +174,8 @@ def checkIng(name,ppu):
 	if results == None:
 		return False
 	return True
+
+def getAllRec():
+	c = conn.cursor()
+	c.execute("SELECT MEAL_NAME FROM MEAL")
+	return c.fetchall()
