@@ -5,8 +5,8 @@ import AddRecipeWindow
 import AddChefWindow
 
 class MainWindow(QtWidgets.QMainWindow):
-	def __init__(self):
-		super(MainWindow,self).__init__()
+	def __init__(self, parent=None):
+		super(MainWindow,self).__init__(parent)
 		self.setFixedSize(850,675)
 		global ui
 		ui = uic.loadUi('ManagerView.ui',self)
@@ -87,24 +87,24 @@ class MainWindow(QtWidgets.QMainWindow):
 			temp.setData(16,recipe)
 		ui.recipeList_2.sortItems()
 
-	def searchRecipes():
+	def searchRecipes(self):
 		global ui
 		ingredient1 = ui.ingredient1.text()
-		recipenames = searchRec(ingredient1)
-		recipeList.clear()
-		recipeList_2.clear()
+		recipenames = DatabaseManage.searchRec(ingredient1)
+		self.recipeList.clear()
+		self.recipeList_2.clear()
 		for i in recipenames:
 			temp = QtWidgets.QListWidgetItem(i, ui.recipeList)
 			temp2 = QtWidgets.QListWidgetItem(i, ui.recipeList_2)
 		ui.recipeList.sortItems()
 		ui.recipeList_2.sortItems()
 
-	def searchChefs():
+	def searchChefs(self):
 		global ui
 		cfname = ui.lineEdit.text()
 		clname = ui.lineEdit_2.text()
 		cfullname = cfname + " " + clname
-		allChefs = getChefs
+		allChefs = DatabaseManage.getChefs
 		for chef in allChefs:
 			if cfullname == chef:
-				recipeList.setText(cfullname)
+				self.recipeList.setText(cfullname)

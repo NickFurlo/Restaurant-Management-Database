@@ -22,7 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
 			self.msgBox(QMessageBox.Warning, "Failed", "Incorrect Name. Please Try again")
 		else:
 			self.close()
-			self.main=MainChefWindow.MainWindow(name)
+			self.main = MainChefWindow.MainWindow(name)
 			self.main.show()
 
 
@@ -32,7 +32,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 	def __init__(self):
 		super(MainWindow,self).__init__()
-		self.setFixedSize(450,280)
+		self.setFixedSize(450,200)
 		global ui
 		ui = uic.loadUi('EnterName.ui', self)
 		ui.lineEdit.returnPressed.connect(self.checkName)

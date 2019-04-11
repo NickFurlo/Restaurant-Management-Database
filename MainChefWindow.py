@@ -1,11 +1,12 @@
 import PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import DatabaseManage
-from MainManagerWindow import setRec, getRecInfo
+from MainManagerWindow import MainWindow
+
 
 class MainWindow(QtWidgets.QMainWindow):
-	def __init__(sef):
-		super(MainWindow,self).__init__()
+	def __init__(self, parent=None):
+		super(MainWindow, self).__init__(parent)
 		self.setFixedSize(750,675)
 		global ui
 		ui = uic.loadUi("ChefView.ui",self)
@@ -15,7 +16,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 	def getChefRecInfo(self):
 		currentRec = ui.recipeList.currentItem().data(16)
-		ui.list.clear
+		ui.list.clear()
 		price = DatabaseManage.getPrice(currentRec)
 		ui.label.setText("$%.2f"%price)
 		ingredients, quantities = DatabaseManage.getIngs(currentRec)

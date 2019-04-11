@@ -1,9 +1,9 @@
-import PyQt5
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
+#import PyQt5
+from PyQt5 import QtWidgets, uic
 import MainManagerWindow
 import EnterNameWindow
 import ctypes
-from PyQt5.QtWidgets import QMessageBox
+#from PyQt5.QtWidgets import QMessageBox
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("myappid")
 
 class MainWindow(QtWidgets.QDialog):
@@ -15,7 +15,7 @@ class MainWindow(QtWidgets.QDialog):
 
 	def chefLog(self):
 		self.close()
-		self.main=EnterNameWindow.MainWindow()
+		self.main = EnterNameWindow.MainWindow()
 		self.main.show()
 
 	def __init__(self):
