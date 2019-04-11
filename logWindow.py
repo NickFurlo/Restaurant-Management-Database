@@ -3,6 +3,8 @@ from PyQt5 import QtWidgets, uic
 import MainManagerWindow
 import EnterNameWindow
 import ctypes
+import sys
+from RecipesLogin_UI import Ui_recipesLogin
 #from PyQt5.QtWidgets import QMessageBox
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("myappid")
 
@@ -10,7 +12,7 @@ class MainWindow(QtWidgets.QDialog):
 	
 	def manLog(self):
 		self.close()
-		self.main=MainManagerWindow.MainWindow()
+		self.main = MainManagerWindow.MainWindow(self)
 		self.main.show()
 
 	def chefLog(self):
@@ -18,20 +20,21 @@ class MainWindow(QtWidgets.QDialog):
 		self.main = EnterNameWindow.MainWindow()
 		self.main.show()
 
-	def __init__(self):
-		super(MainWindow,self).__init__()
-		self.setFixedSize(450,280)
-		global ui
-		ui = uic.loadUi('RecipesLogin.ui',self)
-		ui.btnManager.clicked.connect(self.manLog)
-		ui.btnChef.clicked.connect(self.chefLog)
+	def __init__(self, parent=None):
+		super(MainWindow, self).__init__(parent)
+		self.ui = Ui_recipesLogin()
+		self.ui.setupUi(self)
+		self.setWindowTitle('Recipe Tracker')
+		self.ui.btnManager.clicked.connect(self.manLog)
+		self.ui.btnChef.clicked.connect(self.chefLog)
 
 
 def main():
-	import sys
-	app = QtWidgets.QApplication(sys.argv)
-	mWindow = MainWindow()
-	mWindow.show()
-	sys.exit(app.exec_())
+    app = QtWidgets.QApplication(sys.argv)
+    mWindow = MainWindow()
+    mWindow.show()
+    sys.exit(app.exec_())
 
-main()
+
+if __name__ == '__main__':
+	main()

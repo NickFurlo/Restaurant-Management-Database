@@ -35,5 +35,6 @@ class MainWindow(QtWidgets.QMainWindow):
 		self.setFixedSize(450,200)
 		global ui
 		ui = uic.loadUi('EnterName.ui', self)
+		self.setWindowTitle('Enter Name')
 		ui.lineEdit.returnPressed.connect(self.checkName)
 		ui.btnBack.clicked.connect(self.goBack)

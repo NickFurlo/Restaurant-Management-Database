@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import DatabaseManage
 import AddRecipeWindow
 import AddChefWindow
+from ManagerView_UI import Ui_MainWindow
 from PyQt5.QtWidgets import QMessageBox
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -11,6 +12,7 @@ class MainWindow(QtWidgets.QMainWindow):
 		self.setFixedSize(850,675)
 		global ui
 		ui = uic.loadUi('ManagerView.ui',self)
+		self.setWindowTitle('Manager Window')
 		ui.recipeList.setSortingEnabled(True)
 		self.listenerSet()
 		self.setChefs()
