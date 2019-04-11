@@ -12,29 +12,29 @@ class MainWindow(QtWidgets.QDialog):
 	
 	def manLog(self):
 		self.close()
-		self.main = MainManagerWindow.MainWindow(self)
-		self.main.show()
+		#Mv = MainManagerWindow.MainWindow()
+		self.managerView.show()
 
 	def chefLog(self):
 		self.close()
-		self.main = EnterNameWindow.MainWindow()
-		self.main.show()
+		#self.main = EnterNameWindow.MainWindow()
+		self.nameView.show()
 
 	def __init__(self, parent=None):
-		super(MainWindow, self).__init__(parent)
+		super().__init__(parent)
 		self.ui = Ui_recipesLogin()
 		self.ui.setupUi(self)
 		self.setWindowTitle('Recipe Tracker')
 		self.ui.btnManager.clicked.connect(self.manLog)
 		self.ui.btnChef.clicked.connect(self.chefLog)
 
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    mWindow = MainWindow()
-    mWindow.show()
-    sys.exit(app.exec_())
+		self.managerView = MainManagerWindow.ManagerWindow(self)
+		self.nameView = EnterNameWindow.NameWindow()
 
 
 if __name__ == '__main__':
-	main()
+	app = QtWidgets.QApplication(sys.argv)
+	mWindow = MainWindow()
+	mWindow.show()
+	sys.exit(app.exec_())
+

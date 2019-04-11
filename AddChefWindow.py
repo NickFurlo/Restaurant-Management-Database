@@ -3,8 +3,9 @@ import PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import DatabaseManage
 from PyQt5.QtWidgets import QMessageBox
+from AddChef_UI import Ui_MainWindow
 
-class MainWindow(QtWidgets.QMainWindow):
+class AddChefWindow(QtWidgets.QMainWindow):
 	def msgBox(self,icon,title,message):
 		msg = QMessageBox()
 		msg.setIcon(icon)
@@ -12,27 +13,28 @@ class MainWindow(QtWidgets.QMainWindow):
 		msg.setWindowTitle(title)
 		retval = msg.exec_()
 
-	def __init__(self):
-		super(MainWindow,self).__init__()
-		self.setFixedSize(500,500)
-		global ui, index
+	def __init__(self, parent=None):
+		super(AddChefWindow, self).__init__(parent)
+		self.ui = Ui_MainWindow()
+		self.ui.setupUi(self)
+		global index
 		index = []
-		ui = uic.loadUi("AddChef.ui",self)
+		#ui = uic.loadUi("AddChef.ui",self)
 		self.setWindowTitle('Add Chef')
 		recipes = DatabaseManage.getAllRec()
 		for recipe in recipes:
 			recipe = recipe[0]
-			temp = QtWidgets.QListWidgetItem(recipe,ui.listWidget_2)
+			temp = QtWidgets.QListWidgetItem(recipe,self.ui.listWidget_2)
 			temp.setData(16,recipe)
-		ui.pushButton_2.clicked.connect(self.addRecToChef)
-		ui.pushButton.clicked.connect(self.addChef)
+		self.ui.pushButton_2.clicked.connect(self.addRecToChef)
+		self.ui.pushButton.clicked.connect(self.addChef)
 
 	def addChef(self):
-		fname = ui.lineEdit.text()
-		lname = ui.lineEdit_2.text()
+		fname = self.ui.lineEdit.text()
+		lname = self.ui.lineEdit_2.text()
 		recs = []
 		for i in index:
-			recs.append(ui.listWidget.itemFromIndex(i).data(16))
+			recs.append(self.ui.listWidget.itemFromIndex(i).data(16))
 		if fname == "":
 			self.msgBox(QMessageBox.Warning,"No First Name.","Please enter a first name.")
 			return None
@@ -47,9 +49,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 	def addRecToChef(self):
-		current = ui.listWidget_2.currentItem()
+		current = self.ui.listWidget_2.currentItem()
 		if current == None:
 			return None
-		temp = QtWidgets.QListWidgetItem(current.data(16),ui.listWidget)
+		temp = QtWidgets.QListWidgetItem(current.data(16),self.ui.listWidget)
 		temp.setData(16,current.data(16))
-		index.append(ui.listWidget.indexFromItem(temp))
+		index.append(self.ui.listWidget.indexFromItem(temp))
