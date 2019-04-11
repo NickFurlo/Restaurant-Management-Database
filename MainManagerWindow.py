@@ -122,14 +122,14 @@ class ManagerWindow(QtWidgets.QMainWindow):
 			temp = QtWidgets.QListWidgetItem(s,self.ui.listWidget_2)
 
 	def getRec(self):
-		ui.listWidget.clear()
-		currentChef = ui.recipeList.currentItem()
+		self.ui.listWidget.clear()
+		currentChef = self.ui.recipeList.currentItem()
 		fname = currentChef.data(16)
 		lname = currentChef.data(17)
 		name = (fname, lname)
 		recipes = DatabaseManage.getRecByChefName(name[0])
 		for recipe in recipes:
-			temp = QtWidgets.QListWidgetItem(recipe[0],ui.listWidget)
+			temp = QtWidgets.QListWidgetItem(recipe[0],self.ui.listWidget)
 
 	def setChefs(self):
 		self.ui.recipeList.clear()
