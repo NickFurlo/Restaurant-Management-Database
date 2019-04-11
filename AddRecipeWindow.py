@@ -55,7 +55,7 @@ class MainWindow(QtWidgets.QDialog):
 		if name == "":
 			self.msgBox(QMessageBox.Warning,"No Name","Please enter a name for the ingredient.")
 		if ppu == "":
-			self.msgBox(QmsgBox.Warning,"No Unit Price.","Please enter a unit price.")
+			self.msgBox(QMessageBox.Warning,"No Unit Price.","Please enter a unit price.")
 		temp = QtWidgets.QListWidgetItem(name,ui.listWidget)
 		temp.setData(16,name)
 		temp.setData(17,ppu)
