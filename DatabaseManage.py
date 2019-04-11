@@ -4,7 +4,7 @@ import random
 conn = sqlite3.connect("Proj.db")
 
 #Ingredients is passed as an array of triples. Each triple is of the form (name, unit price, unit)
-def addRec(name,ingredients,qnty):
+def addRec(name,ingredients,qnty,descr):
 	global conn
 	c = conn.cursor()
 	c.execute("SELECT * FROM MEAL WHERE MEAL_NAME = '%s'" %name)
@@ -16,7 +16,7 @@ def addRec(name,ingredients,qnty):
 	c.execute("SELECT MEAL_ID FROM MEAL")
 	ids = c.fetchall()
 	trueId = idGen(ids)
-	c.execute("INSERT INTO MEAL VALUES (%d, '%s')" %(trueId, name))
+	c.execute("INSERT INTO MEAL VALUES (%d, '%s','%s')" %(trueId, name,descr))
 	flag = False
 	for ing in ingredients:
 		if addIng(ing) == False:
@@ -71,27 +71,28 @@ def remRec(name):
 	conn.commit()
 	return True
 
-#ings is passed as an array
 def searchRec(ing):
 	global conn
 	c = conn.cursor()
 	ingids = []
-	c.execute("SELECT INGREDIENT_NUM FROM INGREDIENT WHERE INGREDIENT_NAME = ?", ing)
+	c.execute("SELECT INGREDIENT_NUM FROM INGREDIENT WHERE INGREDIENT_NAME = '%s'"%ing)
 	temp = c.fetchall()
 	for i in temp:
 		ingids.append(i)
 	mealids = []
 	for id in ingids:
-		c.execute("SELECT MEAL_ID FROM RECIPE WHERE INGREDIENT_NUM = ?", id)
+		c.execute("SELECT MEAL_ID FROM RECIPE WHERE INGREDIENT_NUM = %d"%id)
 		temp = c.fetchall()
 		for i in temp:
-			mealids.append(i)
+			mealids.append(i[0])
 	mealnames = []
-	for mealname in mealnames:
-		c.execute("SELECT MEAL_NAME FROM MEAL WHERE MEAL_ID = ?", mealname)
+	for mealid in mealids:
+		c.execute("SELECT MEAL_NAME FROM MEAL WHERE MEAL_ID = '%s'"%mealid)
 		temp = c.fetchall()
 		for i in temp:
 			mealnames.append(i)
+	if len(mealnames) == 0:
+		return None
 	return mealnames
 
 def checkChefName(name):
@@ -112,13 +113,13 @@ def getChefs():
 
 def getRecByChefName(name):
 	c = conn.cursor()
-	c.execute("SELECT CHEF_ID FROM CHEF WHERE CHEF_FNAME = ? AND CHEF_LNAME = ?", name)
+	c.execute("SELECT CHEF_ID FROM CHEF WHERE CHEF_FNAME = '%s'" %name)
 	chefId = c.fetchall()[0]
-	c.execute("SELECT MEAL_ID FROM MAKES WHERE CHEF_ID = ?", chefId)
+	c.execute("SELECT MEAL_ID FROM MAKES WHERE CHEF_ID = %d" %chefId)
 	mealIds = c.fetchall()
 	meals = []
 	for id in mealIds:
-		c.execute("SELECT MEAL_NAME FROM MEAL WHERE MEAL_ID = ?", id)
+		c.execute("SELECT MEAL_NAME FROM MEAL WHERE MEAL_ID = %d" %id)
 		meals.append(c.fetchall()[0])
 	return meals
 
@@ -210,3 +211,16 @@ def remChef(fname,lname):
 	c = conn.cursor()
 	c.execute("DELETE FROM CHEF WHERE CHEF_FNAME = '%s' AND CHEF_LNAME = '%s'"%(fname,lname))
 	conn.commit()
+
+def getDesc(name):
+	c = conn.cursor()
+	c.execute("SELECT DESCR FROM MEAL WHERE MEAL_NAME = '%s'"%name)
+	return c.fetchall()[0]
+
+def searchChef(fname, lname):
+	c = conn.cursor()
+	c.execute("SELECT CHEF_FNAME,CHEF_LNAME FROM CHEF WHERE CHEF_LNAME = '%s' AND CHEF_FNAME = '%s'"%(lname,fname))
+	result = c.fetchall()
+	if len(result) == 0:
+		return None
+	return result[0]

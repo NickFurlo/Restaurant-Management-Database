@@ -41,7 +41,7 @@ class MainWindow(QtWidgets.QDialog):
 		if len(ings) == 0:
 			self.msgBox(QMessageBox.Warning,"No Ingredients.", "Plese enter at least one ingredient")
 			return None
-		DatabaseManage.addRec(name,ings,q)
+		DatabaseManage.addRec(name,ings,q,desc)
 		self.close()
 
 

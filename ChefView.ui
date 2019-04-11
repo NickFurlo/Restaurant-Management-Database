@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>864</width>
-    <height>627</height>
+    <width>690</width>
+    <height>641</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,32 +55,27 @@
        </font>
       </property>
      </widget>
-     <widget class="QPlainTextEdit" name="recipeDisplay">
+     <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>280</x>
         <y>10</y>
-        <width>341</width>
-        <height>561</height>
+        <width>251</width>
+        <height>16</height>
        </rect>
       </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
+      <property name="text">
+       <string>Price:</string>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::WinPanel</enum>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="backgroundVisible">
-       <bool>false</bool>
-      </property>
-      <property name="centerOnScroll">
-       <bool>false</bool>
+     </widget>
+     <widget class="QListWidget" name="list">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>41</y>
+        <width>341</width>
+        <height>521</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -104,181 +99,30 @@
        </font>
       </property>
      </widget>
-     <widget class="QPlainTextEdit" name="recipeDisplay_2">
+     <widget class="QLabel" name="PriceLabel">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>280</x>
         <y>10</y>
-        <width>341</width>
-        <height>561</height>
+        <width>55</width>
+        <height>16</height>
        </rect>
       </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
+      <property name="text">
+       <string>Price:</string>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::WinPanel</enum>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="backgroundVisible">
-       <bool>false</bool>
-      </property>
-      <property name="centerOnScroll">
-       <bool>false</bool>
+     </widget>
+     <widget class="QListWidget" name="listWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>41</y>
+        <width>341</width>
+        <height>531</height>
+       </rect>
       </property>
      </widget>
     </widget>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>37</y>
-      <width>200</width>
-      <height>581</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="btnAdd">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Add Recipe</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>12</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="autoFillBackground">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string>Find me recipes with:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Ingredient 1:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="ingredientOne"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Ingredient 2:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="ingredientTwo"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Ingredient 3:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="ingredientThree"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnSearch">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Search</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnRemoveRecipe">
-       <property name="font">
-        <font>
-         <family>Book Antiqua</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Remove Recipe</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
    </widget>
   </widget>
  </widget>
