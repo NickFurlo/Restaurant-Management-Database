@@ -11,6 +11,7 @@ class MainWindow(QtWidgets.QMainWindow):
 		global ui,name
 		name = a
 		ui = uic.loadUi("ChefView.ui",self)
+		self.setWindowTitle('Chef Window')
 		self.setRec()
 		self.setChefRec()
 		ui.recipeList_2.itemClicked.connect(self.getRecInfo)

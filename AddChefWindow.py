@@ -18,6 +18,7 @@ class MainWindow(QtWidgets.QMainWindow):
 		global ui, index
 		index = []
 		ui = uic.loadUi("AddChef.ui",self)
+		self.setWindowTitle('Add Chef')
 		recipes = DatabaseManage.getAllRec()
 		for recipe in recipes:
 			recipe = recipe[0]

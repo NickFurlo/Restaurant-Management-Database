@@ -19,6 +19,7 @@ class MainWindow(QtWidgets.QDialog):
 		global index
 		index = []
 		ui = uic.loadUi('AddRecipe.ui',self)
+		self.setWindowTitle('Add Recipe')
 		ui.pushButton.clicked.connect(self.addIng)
 		ui.pushButton_3.clicked.connect(self.remIng)
 		ui.pushButton_2.clicked.connect(self.addRec)
